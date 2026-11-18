@@ -4,7 +4,7 @@ import { Link } from "react-router-native";
 
 const styles = StyleSheet.create({
   barTab: {
-    color: "#ffff",
+    color: "#fff",
     padding: 10,
   },
 });
