@@ -2,6 +2,9 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import Constants from "expo-constants";
 import AppBarTab from "./AppBarTab";
 import theme from "./theme";
+import useSignOut from "../hooks/useSignOut";
+import { ME } from "../graphql/queries";
+import { useQuery } from "@apollo/client/react";
 
 const styles = StyleSheet.create({
   container: {
@@ -11,11 +14,14 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const { data } = useQuery(ME);
+  const signOut = useSignOut();
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
         <AppBarTab title="Repositories" url="/" />
-        <AppBarTab title="Sign in" url="/signin" />
+        {data?.me ? <AppBarTab title="Sign out" onPress={signOut} /> : <AppBarTab title="Sign in" url="/signin" />}
       </ScrollView>
     </View>
   );
