@@ -19,6 +19,7 @@
   "dependencies": {
     "@apollo/client": "^4.3.8",
     "@react-native-async-storage/async-storage": "2.2.0",
+    "@react-native-picker/picker": "2.11.4",
     "date-fns": "^4.4.0",
     "expo": "~55.0.32",
     "expo-constants": "~55.0.17",
@@ -29,8 +30,10 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-native": "0.83.10",
+    "react-native-paper": "^5.15.5",
     "react-native-web": "^0.21.0",
     "react-router-native": "^6.30.6",
+    "use-debounce": "^10.1.1",
     "yup": "^1.7.1"
   },
   "private": true,
