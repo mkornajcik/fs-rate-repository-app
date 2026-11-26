@@ -21,7 +21,7 @@ const orderOptions = {
 
 export const ItemSeparator = () => <View style={styles.separator} />;
 
-export const RepositoryListContainer = ({ repositories, onPressRepository, listHeader }) => {
+export const RepositoryListContainer = ({ repositories, onPressRepository, listHeader, onEndReached }) => {
   const repositoryNodes = repositories ? repositories.edges.map((edge) => edge.node) : [];
 
   return (
@@ -34,6 +34,8 @@ export const RepositoryListContainer = ({ repositories, onPressRepository, listH
         </Pressable>
       )}
       ListHeaderComponent={listHeader}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.5}
     />
   );
 };
@@ -45,7 +47,7 @@ const RepositoryList = () => {
 
   const { orderBy, orderDirection } = orderOptions[selectedOrder];
 
-  const { repositories } = useRepositories({ orderBy, orderDirection, searchKeyword });
+  const { repositories, fetchMore } = useRepositories({ first: 5, orderBy, orderDirection, searchKeyword });
 
   const navigate = useNavigate();
 
@@ -53,6 +55,7 @@ const RepositoryList = () => {
     <RepositoryListContainer
       repositories={repositories}
       onPressRepository={(id) => navigate(`/repository/${id}`)}
+      onEndReached={fetchMore}
       listHeader={
         <>
           <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
